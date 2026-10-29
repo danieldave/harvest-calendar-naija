@@ -1,0 +1,5 @@
+# robots.txt – lets all search engines index Harvest Calendar Naija
+User-agent: *
+Allow: /
+# Replace the domain below with your real website address after hosting
+Sitemap: https://harvestcalendarnaija.example/sitemap.xml

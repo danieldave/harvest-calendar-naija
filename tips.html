@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================================
+  HARVEST CALENDAR NAIJA – A DIGITAL GUIDE TO SEASONAL CROPS
+  File: tips.html  (Tips page)
+  Built by: Yewa Egbado College Ilaro – ByteBusters Coding Club
+  Tech: HTML + CSS (style.css) + JavaScript (script.js) only. No frameworks.
+  Every page shares the same header, search bar, footer, crop pop-up,
+  stylesheet and script. Night mode is remembered across all pages.
+  ==========================================================================
+-->
+<html lang="en-NG">
+<head>
+  <!-- ===== 1. BASIC META: character set and mobile viewport ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== 2. NIGHT MODE (runs first so the page never flashes the wrong colours) =====
+       Uses the saved choice, or the phone/computer's own dark-mode setting. -->
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("hcn-theme"); } catch (e) { /* storage blocked */ }
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <!-- ===== 3. SEO: title, description, keywords (help Google/Bing find this page) ===== -->
+  <title>How to Plant Right – Farming Tips for Nigeria | Harvest Calendar Naija</title>
+  <meta name="description" content="Simple farming basics for Nigerian beginners: when to plant after rains, certified seed, crop rotation, storage and safe chemical use.">
+  <meta name="keywords" content="harvest calendar, harvest calendar naija, naija, how to plant, when to plant, planting season Nigeria, crop calendar Nigeria, farming in Nigeria, Nigerian crops, crop diseases Nigeria, how to plant, farming tips Nigeria, beginner farming guide">
+  <meta name="author" content="ByteBusters Coding Club, Yewa Egbado College, Ilaro">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1f6f3f">
+  <!-- After you host the site, replace this address with your real one -->
+  <link rel="canonical" href="https://harvestcalendarnaija.example/tips.html">
+
+  <!-- ===== 4. SOCIAL SHARING (WhatsApp, Facebook, X preview cards) ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Harvest Calendar Naija">
+  <meta property="og:title" content="How to Plant Right – Farming Tips for Nigeria | Harvest Calendar Naija">
+  <meta property="og:description" content="Simple farming basics for Nigerian beginners: when to plant after rains, certified seed, crop rotation, storage and safe chemical use.">
+  <meta property="og:url" content="https://harvestcalendarnaija.example/tips.html">
+  <meta property="og:locale" content="en_NG">
+  <meta name="twitter:card" content="summary">
+
+  <!-- ===== 5. FAVICON: a small inline SVG leaf (no image file needed) ===== -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231f6f3f'/%3E%3Cpath d='M20 44c0-14 10-24 26-26-2 16-12 26-26 26z' fill='%23f2b705'/%3E%3C/svg%3E">
+
+  <!-- ===== 6. FONTS (falls back to system fonts when offline) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ===== 7. SHARED STYLESHEET ===== -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="tips">
+  <!-- Skip link: lets keyboard / screen-reader users jump straight to the content -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- =====================================================================
+       HEADER (same on every page): logo, navigation, night-mode switch
+       ===================================================================== -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <!-- Logo + site name (always goes back to the home page) -->
+      <a href="index.html" class="brand" aria-label="Harvest Calendar Naija home">
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#1f6f3f"/>
+          <path d="M20 46c0-15 10-25 26-27-2 17-12 27-26 27z" fill="#f2b705"/>
+          <path d="M20 46c6-8 12-14 22-22" stroke="#1f6f3f" stroke-width="3" fill="none"/>
+        </svg>
+        <span class="brand-text">Harvest Calendar <strong>Naija</strong></span>
+      </a>
+
+      <!-- Main navigation: each link opens its own page (This Month jumps to the home page section) -->
+      <nav class="main-nav" id="mainNav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#calendar">This Month</a></li>
+          <li><a href="calendar.html">Year Chart</a></li>
+          <li><a href="seasons.html">Seasons</a></li>
+          <li><a href="crops.html">Crops</a></li>
+          <li><a href="map.html">Farm Map</a></li>
+          <li><a href="entries.html">My Entries</a></li>
+          <li><a href="tips.html" class="active" aria-current="page">Tips</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right-hand buttons: night-mode switch + hamburger (phones only) -->
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to night mode">
+          <span class="tt-icon" aria-hidden="true">🌙</span><span class="tt-text">Night</span>
+        </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================================================================
+         PAGE BANNER: breadcrumb, page title and short introduction
+         =================================================================== -->
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">Tips</span></nav>
+        <h1><span class="pb-icon" aria-hidden="true">💡</span> Farming Basics: How to Plant Right</h1>
+        <p>Simple lessons every new farmer should know before planting. Read them, then check the calendar for your crop.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SEARCH STRIP + VIEW TABS (same on every page)
+         =================================================================== -->
+    <section class="search-strip" aria-label="Search crops and switch views">
+      <div class="container search-strip-inner">
+        <nav class="view-tabs" aria-label="Calendar views">
+          <a href="index.html#calendar" class="view-tab">📆 Month view</a>
+          <a href="calendar.html" class="view-tab">📊 Year chart</a>
+          <a href="seasons.html" class="view-tab">🌦️ By season</a>
+        </nav>
+        <!-- Global search (works on every page): type a crop or a state; suggestions appear below -->
+        <div class="search-box" role="search">
+          <label for="globalSearch" class="visually-hidden">Search crops or states</label>
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input type="search" id="globalSearch" placeholder="Search crop or state… e.g. yam, tomato, Kano" autocomplete="off" aria-controls="searchSuggestions" aria-autocomplete="list">
+          <ul id="searchSuggestions" class="suggestions" role="listbox" hidden></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         MAIN CONTENT OF THIS PAGE
+         =================================================================== -->
+    <section class="section" id="tips">
+      <div class="container">
+        <div class="tips-grid">
+          <article class="tip-card"><span class="tip-icon">🌧️</span><h3>Wait for steady rains</h3><p>Don't plant after the first shower. Many extension officers advise waiting until the rains are regular and the soil is moist to about a hand's depth, so seedlings don't die in a dry spell.</p></article>
+          <article class="tip-card"><span class="tip-icon">🌱</span><h3>Use certified seed</h3><p>Buy improved, certified seeds and clean planting materials (stems, setts, suckers). Many diseases, like cassava mosaic, travel in infected planting material.</p></article>
+          <article class="tip-card"><span class="tip-icon">🔄</span><h3>Rotate your crops</h3><p>Follow cereals like maize or sorghum with legumes like cowpea, soybean or groundnut. Legumes add nitrogen and break disease and Striga cycles.</p></article>
+          <article class="tip-card"><span class="tip-icon">🧺</span><h3>Harvest &amp; store well</h3><p>Dry grains well before storage and keep them off the floor in airtight (hermetic) bags. Good drying is the main defence against aflatoxin moulds.</p></article>
+          <article class="tip-card"><span class="tip-icon">🧪</span><h3>Use chemicals safely</h3><p>Only use registered pesticides, follow the label exactly, wear protection and keep them away from children and food.</p></article>
+          <article class="tip-card"><span class="tip-icon">👩🏾‍🌾</span><h3>Ask your ADP</h3><p>Every state has an Agricultural Development Programme (ADP) with extension officers who know your local planting dates and varieties.</p></article>
+        </div>
+        <div class="disclaimer">
+          <strong>Important:</strong> Planting and harvest months on this site are general guides drawn from Nigerian research and extension sources (IITA, NAERLS, NRCRI, NCRI, NIHORT, CRIN, NIFOR, IAR and FAO). Dates change with location, variety, irrigation and each year's rainfall. Always verify local dates with your state ADP or a trained extension officer.
+        </div>
+      </div>
+    </section>
+
+    <!-- Previous / Next page links -->
+    <nav class="container pager" aria-label="Page navigation">
+      <a class="pager-link prev" href="entries.html"><small>← Previous</small>📝 My Entries</a>
+      <span></span>
+    </nav>
+  </main>
+
+  <!-- =====================================================================
+       FOOTER (same on every page, smart fictional footer)
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>🌾 Harvest Calendar Naija</h3>
+        <p>A digital guide to seasonal crops, helping Nigerian farmers, students and youth know when to plant and when to harvest.</p>
+        <p class="club">Built with ❤️ by<br><strong>YEWA EGBADO COLLEGE ILARO<br>BYTEBUSTERS CODING CLUB</strong><br>Ilaro, Ogun State, Nigeria</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#calendar">This month</a></li>
+          <li><a href="calendar.html">12-month chart</a></li>
+          <li><a href="seasons.html">Crops by season</a></li>
+          <li><a href="crops.html">Crop facts</a></li>
+          <li><a href="map.html">Farm location finder</a></li>
+          <li><a href="entries.html">My crop entries</a></li>
+          <li><a href="tips.html">Farming tips</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Trusted sources</h4>
+        <ul>
+          <li>IITA – International Institute of Tropical Agriculture, Ibadan</li>
+          <li>NAERLS – Agricultural Extension, Zaria</li>
+          <li>NRCRI Umudike · NCRI Badeggi · IAR Zaria</li>
+          <li>NIHORT Ibadan · CRIN Ibadan · NIFOR Benin</li>
+          <li>FAO – Food and Agriculture Organization</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Club desk <small>(fictional)</small></h4>
+        <ul>
+          <li>📧 hello@harvestcalendarnaija.example</li>
+          <li>📍 ByteBusters Lab, Yewa Egbado College, Ilaro</li>
+          <li>🕘 Club meets: Tue &amp; Thu, after school</li>
+          <li>🏆 Project for the ByteBusters National Showcase</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> Harvest Calendar Naija · ByteBusters Coding Club. Educational use only. Always confirm planting dates with your local extension officer.</p>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       CROP DETAIL POP-UP (modal), filled by JavaScript. Opens from any page.
+       ===================================================================== -->
+  <div class="modal" id="cropModal" hidden>
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Back-to-top button -->
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
+
+  <!-- ===== SHARED JAVASCRIPT (deferred so the page loads first) ===== -->
+  <script src="script.js" defer></script>
+</body>
+</html>
