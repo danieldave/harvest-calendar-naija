@@ -1,0 +1,140 @@
+# Harvest Calendar Naija
+
+> Harvest Calendar Naija is a free crop calendar for Nigeria, built by students of the ByteBusters Coding Club, Yewa College, Ilaro (Odu'a Investment Foundation), Ogun State. It shows when to plant and harvest 84 Nigerian crops in all 36 states and the FCT, checks live rain and soil moisture to say whether the rains have truly started, and has an AI Farm Doctor that explains crop diseases in 17 Nigerian languages.
+
+Key facts:
+- Nigerian rains start in the South around March-April and reach the far North around June.
+- The rains have truly started when about 20 mm of rain falls within 3 days; 10+ dry days in a row after planting can kill seedlings.
+- Dry-season (fadama/irrigated) crops such as wheat, onion and tomato are planted from November in the North.
+- Facts are checked against IITA, NAERLS, NRCRI, NCRI, NIHORT, CRIN, NIFOR, IAR and FAO. Always confirm local dates with an ADP extension officer.
+- Weather data: Open-Meteo.com (CC BY 4.0).
+
+## Tools
+- [Is it time to plant?](https://harvest-calendar-naija.vercel.app/planting.html): live rain, soil and dry-spell check for any state and crop
+- [Farm Doctor](https://harvest-calendar-naija.vercel.app/doctor.html): describe a sick plant, get likely causes and safe steps
+- [12-month crop chart](https://harvest-calendar-naija.vercel.app/calendar.html)
+
+## Crop guides
+- [When to plant maize in Nigeria](https://harvest-calendar-naija.vercel.app/crops/maize/): plant March to June and August; harvest June to November
+- [When to plant rice in Nigeria](https://harvest-calendar-naija.vercel.app/crops/rice/): plant May to July and January to February; harvest April to May and September to December
+- [When to plant sorghum (guinea corn) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sorghum-guinea-corn/): plant May to July; harvest October to December
+- [When to plant pearl millet in Nigeria](https://harvest-calendar-naija.vercel.app/crops/pearl-millet/): plant May to July; harvest August to October
+- [When to plant wheat in Nigeria](https://harvest-calendar-naija.vercel.app/crops/wheat/): plant November to December; harvest February to April
+- [When to plant acha (fonio) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/acha-fonio/): plant May to July; harvest August to November
+- [When to plant cowpea (beans) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cowpea-beans/): plant July to September; harvest September to November
+- [When to plant groundnut in Nigeria](https://harvest-calendar-naija.vercel.app/crops/groundnut/): plant May to July; harvest August to October
+- [When to plant soybean in Nigeria](https://harvest-calendar-naija.vercel.app/crops/soybean/): plant June to July; harvest October to November
+- [When to plant bambara groundnut in Nigeria](https://harvest-calendar-naija.vercel.app/crops/bambara-groundnut/): plant May to July; harvest September to November
+- [When to plant pigeon pea in Nigeria](https://harvest-calendar-naija.vercel.app/crops/pigeon-pea/): plant May to July; harvest November to January
+- [When to plant african yam bean in Nigeria](https://harvest-calendar-naija.vercel.app/crops/african-yam-bean/): plant April to June; harvest October to December
+- [When to plant sesame (beniseed) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sesame-beniseed/): plant June to July; harvest September to November
+- [When to plant sunflower in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sunflower/): plant July to August; harvest October to November
+- [When to plant cassava in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cassava/): plant March to June and September to October; harvest all year round
+- [When to plant white yam in Nigeria](https://harvest-calendar-naija.vercel.app/crops/white-yam/): plant February to April; harvest August to December
+- [When to plant water yam in Nigeria](https://harvest-calendar-naija.vercel.app/crops/water-yam/): plant March to May; harvest October to January
+- [When to plant cocoyam (taro) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cocoyam-taro/): plant March to May; harvest September to December
+- [When to plant sweet potato in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sweet-potato/): plant April to July; harvest August to November
+- [When to plant irish potato in Nigeria](https://harvest-calendar-naija.vercel.app/crops/irish-potato/): plant April to May and October to November; harvest July to August and January to February
+- [When to plant tiger nut in Nigeria](https://harvest-calendar-naija.vercel.app/crops/tiger-nut/): plant May to July; harvest September to November
+- [When to plant tomato in Nigeria](https://harvest-calendar-naija.vercel.app/crops/tomato/): plant March to April and September to November; harvest June to July and January to April
+- [When to plant hot pepper in Nigeria](https://harvest-calendar-naija.vercel.app/crops/hot-pepper/): plant March to April and September to October; harvest June to August and December to March
+- [When to plant sweet pepper (tatashe) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sweet-pepper-tatashe/): plant September to November; harvest December to March
+- [When to plant onion in Nigeria](https://harvest-calendar-naija.vercel.app/crops/onion/): plant September to December; harvest February to April
+- [When to plant garlic in Nigeria](https://harvest-calendar-naija.vercel.app/crops/garlic/): plant October to November; harvest February to March
+- [When to plant okra in Nigeria](https://harvest-calendar-naija.vercel.app/crops/okra/): plant March to August; harvest May to October
+- [When to plant garden egg in Nigeria](https://harvest-calendar-naija.vercel.app/crops/garden-egg/): plant March to May and September; harvest June to September and December to January
+- [When to plant cucumber in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cucumber/): plant March to April and September to November; harvest May to June and November to January
+- [When to plant egusi melon in Nigeria](https://harvest-calendar-naija.vercel.app/crops/egusi-melon/): plant April to June; harvest July to September
+- [When to plant green beans in Nigeria](https://harvest-calendar-naija.vercel.app/crops/green-beans/): plant September to November; harvest November to February
+- [When to plant cabbage in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cabbage/): plant September to November; harvest December to March
+- [When to plant carrot in Nigeria](https://harvest-calendar-naija.vercel.app/crops/carrot/): plant September to November; harvest December to March
+- [When to plant pumpkin in Nigeria](https://harvest-calendar-naija.vercel.app/crops/pumpkin/): plant April to June; harvest August to October
+- [When to plant amaranth (efo tete) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/amaranth-efo-tete/): plant March to October; harvest April to November
+- [When to plant celosia (soko) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/celosia-soko/): plant March to September; harvest April to October
+- [When to plant fluted pumpkin (ugu) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/fluted-pumpkin-ugu/): plant March to May; harvest May to December
+- [When to plant jute mallow (ewedu) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/jute-mallow-ewedu/): plant April to July; harvest May to September
+- [When to plant waterleaf in Nigeria](https://harvest-calendar-naija.vercel.app/crops/waterleaf/): plant March to June; harvest April to November
+- [When to plant bitter leaf in Nigeria](https://harvest-calendar-naija.vercel.app/crops/bitter-leaf/): plant March to May; harvest all year round
+- [When to plant scent leaf in Nigeria](https://harvest-calendar-naija.vercel.app/crops/scent-leaf/): plant March to May; harvest all year round
+- [When to plant lettuce in Nigeria](https://harvest-calendar-naija.vercel.app/crops/lettuce/): plant September to November; harvest November to February
+- [When to plant moringa in Nigeria](https://harvest-calendar-naija.vercel.app/crops/moringa/): plant April to July; harvest all year round
+- [When to plant roselle (zobo) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/roselle-zobo/): plant June to July; harvest October to December
+- [When to plant watermelon in Nigeria](https://harvest-calendar-naija.vercel.app/crops/watermelon/): plant October to January; harvest January to April
+- [When to plant pineapple in Nigeria](https://harvest-calendar-naija.vercel.app/crops/pineapple/): plant March to May; harvest November to April
+- [When to plant plantain in Nigeria](https://harvest-calendar-naija.vercel.app/crops/plantain/): plant March to May; harvest all year round
+- [When to plant banana in Nigeria](https://harvest-calendar-naija.vercel.app/crops/banana/): plant March to May; harvest all year round
+- [When to plant pawpaw (papaya) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/pawpaw-papaya/): plant April to June; harvest all year round
+- [When to plant mango in Nigeria](https://harvest-calendar-naija.vercel.app/crops/mango/): plant June to July; harvest February to June
+- [When to plant sweet orange in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sweet-orange/): plant June to July; harvest September to February
+- [When to plant lime & lemon in Nigeria](https://harvest-calendar-naija.vercel.app/crops/lime-lemon/): plant June to July; harvest all year round
+- [When to plant guava in Nigeria](https://harvest-calendar-naija.vercel.app/crops/guava/): plant June to July; harvest July to September and December to January
+- [When to plant cashew in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cashew/): plant June to July; harvest February to May
+- [When to plant african pear (ube) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/african-pear-ube/): plant June to July; harvest May to September
+- [When to plant avocado in Nigeria](https://harvest-calendar-naija.vercel.app/crops/avocado/): plant June to July; harvest May to September
+- [When to plant coconut in Nigeria](https://harvest-calendar-naija.vercel.app/crops/coconut/): plant April to July; harvest all year round
+- [When to plant date palm in Nigeria](https://harvest-calendar-naija.vercel.app/crops/date-palm/): plant June to August; harvest April to July
+- [When to plant african star apple in Nigeria](https://harvest-calendar-naija.vercel.app/crops/african-star-apple/): plant June to July; harvest December to March
+- [When to plant cocoa in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cocoa/): plant April to June; harvest May to July and October to February
+- [When to plant oil palm in Nigeria](https://harvest-calendar-naija.vercel.app/crops/oil-palm/): plant April to July; harvest all year round
+- [When to plant rubber in Nigeria](https://harvest-calendar-naija.vercel.app/crops/rubber/): plant June to July; harvest all year round
+- [When to plant cotton in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cotton/): plant June to July; harvest October to December
+- [When to plant sugarcane in Nigeria](https://harvest-calendar-naija.vercel.app/crops/sugarcane/): plant March to May and November to December; harvest November to April
+- [When to plant kola nut in Nigeria](https://harvest-calendar-naija.vercel.app/crops/kola-nut/): plant June to July; harvest October to February
+- [When to plant shea tree in Nigeria](https://harvest-calendar-naija.vercel.app/crops/shea-tree/): plant June to July; harvest April to August
+- [When to plant locust bean (iru) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/locust-bean-iru/): plant June to July; harvest February to May
+- [When to plant coffee (robusta) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/coffee-robusta/): plant June to July; harvest November to February
+- [When to plant tea in Nigeria](https://harvest-calendar-naija.vercel.app/crops/tea/): plant April to June; harvest April to October
+- [When to plant gum arabic (acacia) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/gum-arabic-acacia/): plant July to August; harvest November to March
+- [When to plant ginger in Nigeria](https://harvest-calendar-naija.vercel.app/crops/ginger/): plant April to May; harvest December to February
+- [When to plant turmeric in Nigeria](https://harvest-calendar-naija.vercel.app/crops/turmeric/): plant April to May; harvest December to February
+- [When to plant spring onion in Nigeria](https://harvest-calendar-naija.vercel.app/crops/spring-onion/): plant March to October; harvest May to December
+- [When to plant tannia (new cocoyam) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/tannia-new-cocoyam/): plant March to May; harvest November to January
+- [When to plant three-leaved yam (bitter yam) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/three-leaved-yam-bitter-yam/): plant March to April; harvest October to December
+- [When to plant castor in Nigeria](https://harvest-calendar-naija.vercel.app/crops/castor/): plant June to July; harvest November to January
+- [When to plant kenaf in Nigeria](https://harvest-calendar-naija.vercel.app/crops/kenaf/): plant June to July; harvest September to November
+- [When to plant uziza in Nigeria](https://harvest-calendar-naija.vercel.app/crops/uziza/): plant March to May; harvest all year round
+- [When to plant cauliflower in Nigeria](https://harvest-calendar-naija.vercel.app/crops/cauliflower/): plant September to October; harvest December to February
+- [When to plant bitter kola in Nigeria](https://harvest-calendar-naija.vercel.app/crops/bitter-kola/): plant June to July; harvest July to October
+- [When to plant velvet tamarind (awin) in Nigeria](https://harvest-calendar-naija.vercel.app/crops/velvet-tamarind-awin/): plant June to July; harvest December to March
+- [When to plant tamarind in Nigeria](https://harvest-calendar-naija.vercel.app/crops/tamarind/): plant June to July; harvest January to April
+- [When to plant baobab in Nigeria](https://harvest-calendar-naija.vercel.app/crops/baobab/): plant June to July; harvest November to March
+- [When to plant lemongrass in Nigeria](https://harvest-calendar-naija.vercel.app/crops/lemongrass/): plant March to May; harvest all year round
+
+## State crop calendars
+- [What to plant in Sokoto](https://harvest-calendar-naija.vercel.app/states/sokoto/): North-West, rains June – September
+- [What to plant in Zamfara](https://harvest-calendar-naija.vercel.app/states/zamfara/): North-West, rains June – September
+- [What to plant in Katsina](https://harvest-calendar-naija.vercel.app/states/katsina/): North-West, rains June – September
+- [What to plant in Kano](https://harvest-calendar-naija.vercel.app/states/kano/): North-West, rains June – September
+- [What to plant in Jigawa](https://harvest-calendar-naija.vercel.app/states/jigawa/): North-West, rains June – September
+- [What to plant in Yobe](https://harvest-calendar-naija.vercel.app/states/yobe/): North-East, rains June – September
+- [What to plant in Borno](https://harvest-calendar-naija.vercel.app/states/borno/): North-East, rains June – September
+- [What to plant in Kebbi](https://harvest-calendar-naija.vercel.app/states/kebbi/): North-West, rains June – September
+- [What to plant in Niger](https://harvest-calendar-naija.vercel.app/states/niger/): North-Central, rains April – October
+- [What to plant in Kaduna](https://harvest-calendar-naija.vercel.app/states/kaduna/): North-West, rains May – October
+- [What to plant in Bauchi](https://harvest-calendar-naija.vercel.app/states/bauchi/): North-East, rains May – October
+- [What to plant in Gombe](https://harvest-calendar-naija.vercel.app/states/gombe/): North-East, rains May – October
+- [What to plant in Adamawa](https://harvest-calendar-naija.vercel.app/states/adamawa/): North-East, rains May – October
+- [What to plant in Kwara](https://harvest-calendar-naija.vercel.app/states/kwara/): North-Central, rains April – October
+- [What to plant in FCT](https://harvest-calendar-naija.vercel.app/states/fct/): North-Central, rains April – October
+- [What to plant in Nasarawa](https://harvest-calendar-naija.vercel.app/states/nasarawa/): North-Central, rains April – October
+- [What to plant in Plateau](https://harvest-calendar-naija.vercel.app/states/plateau/): North-Central, rains April – October
+- [What to plant in Taraba](https://harvest-calendar-naija.vercel.app/states/taraba/): North-East, rains April – October
+- [What to plant in Oyo](https://harvest-calendar-naija.vercel.app/states/oyo/): South-West, rains March – November (two peaks)
+- [What to plant in Osun](https://harvest-calendar-naija.vercel.app/states/osun/): South-West, rains March – November (two peaks)
+- [What to plant in Ekiti](https://harvest-calendar-naija.vercel.app/states/ekiti/): South-West, rains March – November (two peaks)
+- [What to plant in Kogi](https://harvest-calendar-naija.vercel.app/states/kogi/): North-Central, rains April – October
+- [What to plant in Benue](https://harvest-calendar-naija.vercel.app/states/benue/): North-Central, rains April – October
+- [What to plant in Ogun](https://harvest-calendar-naija.vercel.app/states/ogun/): South-West, rains March – November (two peaks)
+- [What to plant in Ondo](https://harvest-calendar-naija.vercel.app/states/ondo/): South-West, rains March – November (two peaks)
+- [What to plant in Edo](https://harvest-calendar-naija.vercel.app/states/edo/): South-South, rains March – November (two peaks)
+- [What to plant in Anambra](https://harvest-calendar-naija.vercel.app/states/anambra/): South-East, rains March – November (two peaks)
+- [What to plant in Enugu](https://harvest-calendar-naija.vercel.app/states/enugu/): South-East, rains March – November (two peaks)
+- [What to plant in Ebonyi](https://harvest-calendar-naija.vercel.app/states/ebonyi/): South-East, rains March – November (two peaks)
+- [What to plant in Cross River](https://harvest-calendar-naija.vercel.app/states/cross-river/): South-South, rains March – November (two peaks)
+- [What to plant in Lagos](https://harvest-calendar-naija.vercel.app/states/lagos/): South-West, rains March – November (two peaks)
+- [What to plant in Delta](https://harvest-calendar-naija.vercel.app/states/delta/): South-South, rains March – November (two peaks)
+- [What to plant in Imo](https://harvest-calendar-naija.vercel.app/states/imo/): South-East, rains March – November (two peaks)
+- [What to plant in Abia](https://harvest-calendar-naija.vercel.app/states/abia/): South-East, rains March – November (two peaks)
+- [What to plant in Akwa Ibom](https://harvest-calendar-naija.vercel.app/states/akwa-ibom/): South-South, rains March – November (two peaks)
+- [What to plant in Bayelsa](https://harvest-calendar-naija.vercel.app/states/bayelsa/): South-South, rains February/March – November (very wet)
+- [What to plant in Rivers](https://harvest-calendar-naija.vercel.app/states/rivers/): South-South, rains February/March – November (very wet)

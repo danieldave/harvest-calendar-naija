@@ -1,5 +1,22 @@
-# robots.txt – lets all search engines index Harvest Calendar Naija
+# Harvest Calendar Naija: search engines AND AI search tools are welcome,
+# because the goal is to help as many Nigerian farmers as possible.
 User-agent: *
 Allow: /
-# Replace the domain below with your real website address after hosting
-Sitemap: https://harvestcalendarnaija.example/sitemap.xml
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://harvest-calendar-naija.vercel.app/sitemap.xml

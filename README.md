@@ -1,49 +1,57 @@
-# Harvest Calendar Naija – A Digital Guide to Seasonal Crops (v2: multi-page + night mode)
-Built by the **Yewa Egbado College Ilaro – ByteBusters Coding Club**. HTML, CSS and JavaScript only.
+# Harvest Calendar Naija v3 · A Digital Guide to Seasonal Crops
 
-## Pages
-| File | Page | What's on it |
+Built by the **ByteBusters Coding Club, Yewa College, Ilaro** (Odu'a Investment Foundation).
+When to plant and harvest 84 Nigerian crops in all 36 states + FCT, with a live planting check, an AI Farm Doctor and 17 Nigerian languages.
+
+## What's new in v3
+
+| Upgrade | What it does | Where |
 |---|---|---|
-| `index.html` | Home | Farm animation, today's season, **This Month** (planted / in harvest), Pick a month, Explore cards |
-| `calendar.html` | Year Chart | 12-month crop × month table with filters |
-| `seasons.html` | Seasons | Crops for dry season, early rains, peak rains, late rains |
-| `crops.html` | Crops | Facts on 84 crops: best states, tips, diseases and prevention |
-| `map.html` | Farm Map | Interactive Nigeria state map: best states per crop, what suits your state |
-| `entries.html` | My Entries | Add your own crops to the calendar (saved on this device) |
-| `tips.html` | Tips | How to plant right + disclaimer |
+| **Is it time to plant?** | Picks up the last 14 days of rain + 16-day forecast and soil moisture for your state, then applies the onset rule (20 mm in 3 days), dry-spell, flood and heat checks | `planting.html`, `js/planting.js`, `api/weather.js` |
+| **AI Farm Doctor** | Describe a sick plant; the doctor checks **our own disease list first**, answers in your language, never gives chemical doses. Works offline with our list | `doctor.html`, `api/doctor.js` |
+| **Photo checks (coming soon)** | Fully built and tested, but locked. Photos are shrunk on the phone before sending | `js/config.js` + `DOCTOR_PHOTOS` |
+| **17 languages** | Hand-written: English, Hausa, Yoruba, Igbo, Pidgin. AI (beta): Fulfulde, Kanuri, Tiv, Ibibio, Efik, Izon, Edo, Nupe, Urhobo, Igala, Idoma, Ebira | `js/i18n.js`, `api/translate.js` |
+| **SEO: 132 pages** | 84 crop guides ("When to plant maize in Nigeria"), 37 state calendars ("What to plant in Ogun State"), sitemap, social preview | `crops/`, `states/`, `sitemap.xml` |
+| **AEO** | Every guide starts with a Quick answer + FAQ, Article and Breadcrumb labels (JSON-LD) | `tools/build.js` |
+| **GEO** | `llms.txt` fact sheet for AI assistants; robots.txt welcomes AI search bots | `llms.txt`, `robots.txt` |
+| **Premium design** | "Harvest at golden hour": forest green + harvest gold, Fraunces + Inter, night mode kept | `style.css` section 22 |
 
-Shared by every page: `style.css` (all styling, including night mode) and `script.js` (all features).
-Every page has the same header, search bar, footer, crop pop-up and Previous/Next links.
+## Put it live on Vercel (one time)
+1. vercel.com → **Add New → Project** → import `danieldave/harvest-calendar-naija`. Framework preset: **Other**. No build command.
+2. **Settings → Environment Variables**: add `OPENAI_API_KEY` (needed for the Farm Doctor and AI languages). Leave `DOCTOR_PHOTOS` empty for now.
+3. Deploy. If Vercel's address is not `https://harvest-calendar-naija.vercel.app`, put the real one in `tools/site.json`, run `node tools/build.js`, and push.
+4. Google Search Console → add the site → submit `/sitemap.xml`.
 
-## Night mode
-- Tap **🌙 Night** in the header to switch, and **☀️ Day** to switch back.
-- The first time, it follows the phone or computer's own dark-mode setting.
-- The choice is remembered on every page.
-- In night mode the farm animation shows a moon, twinkling stars and the truck's headlight.
+The planting check needs **no key**: weather comes free from Open-Meteo, and Vercel saves each state's answer for 3 hours, so thousands of farmers cost almost nothing. If our API is unreachable, the phone asks Open-Meteo directly.
 
-## Links between pages
-- `map.html?crop=white-yam` opens the map with White yam highlighted.
-- `map.html?state=Ogun` opens the map with Ogun selected.
-- `crops.html?q=tomato` opens the crop library filtered to "tomato".
+## Switching on photo checks later
+Both switches are needed, so nobody can turn it on by accident:
+1. `js/config.js` → `photos: true`
+2. Vercel → `DOCTOR_PHOTOS=on` → redeploy
 
-The search bar and crop pop-up use these links automatically.
+## Commands
+```bash
+node tools/build.js        # rebuild the 132 SEO pages, sitemap, robots.txt, llms.txt after changing js/data.js
+node tools/test.js         # 26 checks: planting rules, API safety, languages, SEO/AEO/GEO (no key needed)
+MOCK=1 node tools/dev.js   # run locally at http://localhost:3000
+```
 
-## Run it
-Keep all files in **one folder** and double-click `index.html`. It works offline (fonts fall back to system fonts).
+## Native speakers: help us improve a language
+Open `js/i18n.js`, find the language block (e.g. `ha:` for Hausa), fix the words, and push. For an AI language, copy the English block, translate it, and change its `how` from `"ai"` to `"hand"` in `LANGS`.
 
-## Put it online and get found on Google
-1. Host it free on **GitHub Pages** or **Netlify** (drag-and-drop the folder).
-2. Replace `https://harvestcalendarnaija.example/` with your real address in every page's `<link rel="canonical">` and `og:url`, in `robots.txt` and in `sitemap.xml`. A find-and-replace across the folder does it in one go.
-3. Add the site to **Google Search Console** and submit `sitemap.xml`. It lists all 7 pages.
-4. Share the link (WhatsApp, school site, social media).
+## Project map
+```
+index.html, planting.html, doctor.html, crops.html, calendar.html, seasons.html, map.html, entries.html, tips.html
+js/data.js        ALL the facts: 84 crops, 37 states (with weather coordinates), seasons
+js/planting.js    the "is it time to plant?" thinking (same code in the browser and the tests)
+js/i18n.js        17 languages
+js/features.js    planting page, Farm Doctor, language picker
+js/app.js         month view, year chart, library, map, entries, search, night mode
+js/config.js      feature switches (photos)
+api/weather.js    live weather, cached 3 hours        (Vercel function)
+api/doctor.js     AI Farm Doctor                       (Vercel function)
+api/translate.js  AI translation for 12 languages      (Vercel function)
+tools/build.js    makes crops/, states/, sitemap.xml, robots.txt, llms.txt
+```
 
-Each page has its own title, description and keywords, so Google can show different pages for different searches, e.g. "when to plant maize in Nigeria" can land on the Year Chart. Indexing takes days to weeks and ranking is never guaranteed.
-
-## Edit crops
-Each crop is one object in the `CROPS` list in `script.js`. Months are numbers 1–12.
-`p` = planting months, `h` = harvest months, `z` = regions, `st` = best states, `d` = diseases.
-
-## Data note
-Months and facts are general guides from IITA, NAERLS, NRCRI, NCRI, NIHORT, CRIN, NIFOR, IAR and FAO material. Confirm local dates with your state ADP extension officer.
-
-See `PROMPT.md` for the full 5-part prompt used to build this site.
+Educational use only. Always confirm planting dates with your local ADP extension officer. Weather data: Open-Meteo.com (CC BY 4.0).

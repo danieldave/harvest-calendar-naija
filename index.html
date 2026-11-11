@@ -30,22 +30,23 @@
 
   <!-- ===== 3. SEO: title, description, keywords (help Google/Bing find this page) ===== -->
   <title>Harvest Calendar Naija – When to Plant & Harvest Crops in Nigeria</title>
-  <meta name="description" content="Free interactive crop calendar for Nigeria. See what is planted and harvested this month, learn how to plant 84 Nigerian crops, the best states, crop diseases and prevention.">
+  <meta name="description" content="Free crop calendar for Nigeria: when to plant and harvest 84 crops, a live rain check for your state and an AI Farm Doctor in 17 Nigerian languages.">
   <meta name="keywords" content="harvest calendar, harvest calendar naija, naija, how to plant, when to plant, planting season Nigeria, crop calendar Nigeria, farming in Nigeria, Nigerian crops, crop diseases Nigeria, harvest calendar naija, what to plant this month Nigeria">
   <meta name="author" content="ByteBusters Coding Club, Yewa Egbado College, Ilaro">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#1f6f3f">
   <!-- After you host the site, replace this address with your real one -->
-  <link rel="canonical" href="https://harvestcalendarnaija.example/">
+  <link rel="canonical" href="https://harvest-calendar-naija.vercel.app/">
 
   <!-- ===== 4. SOCIAL SHARING (WhatsApp, Facebook, X preview cards) ===== -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Harvest Calendar Naija">
   <meta property="og:title" content="Harvest Calendar Naija – When to Plant & Harvest Crops in Nigeria">
-  <meta property="og:description" content="Free interactive crop calendar for Nigeria. See what is planted and harvested this month, learn how to plant 84 Nigerian crops, the best states, crop diseases and prevention.">
-  <meta property="og:url" content="https://harvestcalendarnaija.example/">
+  <meta property="og:description" content="Free crop calendar for Nigeria: when to plant and harvest 84 crops, a live rain check for your state and an AI Farm Doctor in 17 Nigerian languages.">
+  <meta property="og:url" content="https://harvest-calendar-naija.vercel.app/">
+  <meta property="og:image" content="https://harvest-calendar-naija.vercel.app/images/og-image.png">
   <meta property="og:locale" content="en_NG">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- ===== 5. FAVICON: a small inline SVG leaf (no image file needed) ===== -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231f6f3f'/%3E%3Cpath d='M20 44c0-14 10-24 26-26-2 16-12 26-26 26z' fill='%23f2b705'/%3E%3C/svg%3E">
@@ -53,10 +54,10 @@
   <!-- ===== 6. FONTS (falls back to system fonts when offline) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- ===== 7. SHARED STYLESHEET ===== -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
   <!-- ===== 8. STRUCTURED DATA (JSON-LD): tells search engines what this site is ===== -->
   <script type="application/ld+json">
   {
@@ -64,7 +65,7 @@
     "@type": "WebSite",
     "name": "Harvest Calendar Naija",
     "alternateName": "Harvest Calendar Naija – A Digital Guide to Seasonal Crops",
-    "url": "https://harvestcalendarnaija.example/",
+    "url": "https://harvest-calendar-naija.vercel.app/",
     "description": "Interactive planting and harvest calendar for Nigerian crops with regions, states, diseases and prevention tips.",
     "inLanguage": "en-NG",
     "audience": { "@type": "Audience", "audienceType": "Farmers, students and young people in Nigeria" },
@@ -82,32 +83,32 @@
        ===================================================================== -->
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <!-- Logo + site name (always goes back to the home page) -->
-      <a href="index.html" class="brand" aria-label="Harvest Calendar Naija home">
+      <a href="/" class="brand" aria-label="Harvest Calendar Naija home">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="32" cy="32" r="30" fill="#1f6f3f"/>
-          <path d="M20 46c0-15 10-25 26-27-2 17-12 27-26 27z" fill="#f2b705"/>
-          <path d="M20 46c6-8 12-14 22-22" stroke="#1f6f3f" stroke-width="3" fill="none"/>
+          <circle cx="32" cy="32" r="30" fill="#0F3B2B"/>
+          <path d="M20 46c0-15 10-25 26-27-2 17-12 27-26 27z" fill="#E3A33B"/>
+          <path d="M20 46c6-8 12-14 22-22" stroke="#0F3B2B" stroke-width="3" fill="none"/>
         </svg>
         <span class="brand-text">Harvest Calendar <strong>Naija</strong></span>
       </a>
-
-      <!-- Main navigation: each link opens its own page (This Month jumps to the home page section) -->
       <nav class="main-nav" id="mainNav" aria-label="Main">
         <ul>
-          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-          <li><a href="index.html#calendar">This Month</a></li>
-          <li><a href="calendar.html">Year Chart</a></li>
-          <li><a href="seasons.html">Seasons</a></li>
-          <li><a href="crops.html">Crops</a></li>
-          <li><a href="map.html">Farm Map</a></li>
-          <li><a href="entries.html">My Entries</a></li>
-          <li><a href="tips.html">Tips</a></li>
+          <li><a href="/" class="active" aria-current="page" data-i18n="nav.home">Home</a></li>
+          <li><a href="/planting.html" data-i18n="nav.plant">Plant Now</a></li>
+          <li><a href="/doctor.html" data-i18n="nav.doctor">Farm Doctor</a></li>
+          <li><a href="/crops.html" data-i18n="nav.crops">Crops</a></li>
+          <li><a href="/calendar.html" data-i18n="nav.year">Year Chart</a></li>
+          <li><a href="/seasons.html" data-i18n="nav.seasons">Seasons</a></li>
+          <li><a href="/map.html" data-i18n="nav.map">Farm Map</a></li>
+          <li><a href="/tips.html" data-i18n="nav.tips">Tips</a></li>
         </ul>
       </nav>
-
-      <!-- Right-hand buttons: night-mode switch + hamburger (phones only) -->
       <div class="header-actions">
+        <label class="lang-pick" title="Language">
+          <span aria-hidden="true">🌍</span><span class="visually-hidden" data-i18n="ui.language">Language</span>
+          <select id="langSelect" aria-label="Language"><option value="en">English</option></select>
+          <small id="langStatus" aria-live="polite"></small>
+        </label>
         <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to night mode">
           <span class="tt-icon" aria-hidden="true">🌙</span><span class="tt-text">Night</span>
         </button>
@@ -117,20 +118,26 @@
       </div>
     </div>
   </header>
+  <p class="ai-beta" id="aiBeta" hidden role="note"></p>
 
   <main id="main">
 <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-text">
-          <p class="hero-kicker">A digital guide to seasonal crops</p>
-          <h1>Know <span class="hl-green">when to plant</span> and <span class="hl-gold">when to harvest</span> in Nigeria.</h1>
-          <p class="hero-lead">Harvest Calendar Naija shows 84 Nigerian crops month by month, the states and regions where they grow best, their common diseases and how to prevent them. Made for farmers, students and young people starting out.</p>
-          <!-- Today's date + current season pill, filled in by JavaScript -->
+          <p class="hero-kicker" data-i18n="hero.kicker">A digital guide to seasonal crops</p>
+          <h1 data-i18n-html="hero.title">Know <span class="hl-green">when to plant</span> and <span class="hl-gold">when to harvest</span> in Nigeria.</h1>
+          <p class="hero-lead" data-i18n="hero.lead">84 Nigerian crops month by month, live rain checks for your state, and a Farm Doctor that explains crop diseases in your language.</p>
           <p class="today-pill" id="todayPill">📅 Loading today's season…</p>
           <div class="hero-actions">
-            <a href="#calendar" class="btn btn-primary">See this month</a>
-            <a href="map.html" class="btn btn-ghost">Find a farm location</a>
+            <a href="/planting.html" class="btn btn-primary"><span aria-hidden="true">🌧️</span> <span data-i18n="hero.ctaPlant">Is it time to plant?</span></a>
+            <a href="/doctor.html" class="btn btn-ghost"><span aria-hidden="true">🩺</span> <span data-i18n="hero.ctaDoctor">Ask the Farm Doctor</span></a>
           </div>
+          <ul class="hero-stats" aria-label="What is inside">
+            <li><b>84</b><span>crops</span></li>
+            <li><b>37</b><span>states + FCT</span></li>
+            <li><b>17</b><span>languages</span></li>
+            <li><b>Live</b><span>rain checks</span></li>
+          </ul>
         </div>
 
         <!-- Animated farm scene (pure SVG + CSS animation) -->
@@ -290,21 +297,40 @@
       </div>
     </section>
 
+
+    <!-- ===================================================================
+         QUICK PLANTING WINDOW: pick a state, see live rain right away
+         =================================================================== -->
+    <section class="quick-plant" aria-labelledby="qpTitle">
+      <div class="container qp-inner">
+        <div class="qp-text">
+          <p class="eyebrow">🌧️ Live, for your state</p>
+          <h2 id="qpTitle" data-i18n="plant.title">Is it time to plant?</h2>
+          <p data-i18n="plant.lead">Pick your state and crop. We check the rain of the last 14 days and the forecast for the next 16 days, the way extension officers do.</p>
+        </div>
+        <form class="qp-form" action="/planting.html" method="get">
+          <label class="field"><span data-i18n="plant.state">Your state</span><select name="state" id="qpState"></select></label>
+          <label class="field"><span data-i18n="plant.crop">Your crop</span><select name="crop" id="qpCrop"></select></label>
+          <button class="btn btn-gold" type="submit" data-i18n="plant.check">Check now</button>
+        </form>
+      </div>
+    </section>
+
     <!-- ===================================================================
          SEARCH STRIP + VIEW TABS (same on every page)
          =================================================================== -->
     <section class="search-strip" aria-label="Search crops and switch views">
       <div class="container search-strip-inner">
         <nav class="view-tabs" aria-label="Calendar views">
-          <a href="index.html#calendar" class="view-tab">📆 Month view</a>
-          <a href="calendar.html" class="view-tab">📊 Year chart</a>
-          <a href="seasons.html" class="view-tab">🌦️ By season</a>
+          <a href="/#calendar" class="view-tab">📆 Month view</a>
+          <a href="/calendar.html" class="view-tab">📊 Year chart</a>
+          <a href="/seasons.html" class="view-tab">🌦️ By season</a>
         </nav>
         <!-- Global search (works on every page): type a crop or a state; suggestions appear below -->
         <div class="search-box" role="search">
           <label for="globalSearch" class="visually-hidden">Search crops or states</label>
           <span class="search-icon" aria-hidden="true">🔍</span>
-          <input type="search" id="globalSearch" placeholder="Search crop or state… e.g. yam, tomato, Kano" autocomplete="off" aria-controls="searchSuggestions" aria-autocomplete="list">
+          <input type="search" id="globalSearch" placeholder="Search crop or state… e.g. yam, tomato, Kano" data-i18n-placeholder="ui.search" autocomplete="off" aria-controls="searchSuggestions" aria-autocomplete="list">
           <ul id="searchSuggestions" class="suggestions" role="listbox" hidden></ul>
         </div>
       </div>
@@ -369,12 +395,15 @@
         <div class="section-head"><h2>Explore Harvest Calendar Naija</h2></div>
         <p class="section-sub">Each part of the guide has its own page. Pick where you want to go.</p>
         <div class="explore-grid">
-          <a class="explore-card reveal" href="calendar.html"><span class="ex-icon">📊</span><h3>12-Month Chart</h3><p>All crops from January to December on one chart.</p><span class="ex-go">Open chart →</span></a>
-          <a class="explore-card reveal" href="seasons.html"><span class="ex-icon">🌦️</span><h3>Crops by Season</h3><p>What to plant in the dry season, early rains, peak rains and late rains.</p><span class="ex-go">See seasons →</span></a>
-          <a class="explore-card reveal" href="crops.html"><span class="ex-icon">🌽</span><h3>Facts on 84 Crops</h3><p>Best states, quick tips, diseases and how to prevent them.</p><span class="ex-go">Browse crops →</span></a>
-          <a class="explore-card reveal" href="map.html"><span class="ex-icon">🗺️</span><h3>Farm Location Finder</h3><p>Find the best states for a crop, or what suits your own state.</p><span class="ex-go">Open map →</span></a>
-          <a class="explore-card reveal" href="entries.html"><span class="ex-icon">📝</span><h3>My Crop Entries</h3><p>Add your own crops and see them on the calendar.</p><span class="ex-go">Add a crop →</span></a>
-          <a class="explore-card reveal" href="tips.html"><span class="ex-icon">💡</span><h3>How to Plant Right</h3><p>Simple farming basics for beginners.</p><span class="ex-go">Read tips →</span></a>
+          <a class="explore-card reveal feature" href="/planting.html"><span class="ex-icon">🌧️</span><h3>Is it time to plant?</h3><p>Live rain and soil checks for your state and crop, with dry-spell warnings.</p><span class="ex-go">Check now →</span></a>
+          <a class="explore-card reveal feature" href="/doctor.html"><span class="ex-icon">🩺</span><h3>Farm Doctor</h3><p>Describe a sick plant and get simple advice in your language.</p><span class="ex-go">Ask now →</span></a>
+          <a class="explore-card reveal" href="/states/"><span class="ex-icon">📍</span><h3>What to plant in your state</h3><p>A month-by-month planting guide for all 36 states and the FCT.</p><span class="ex-go">Find your state →</span></a>
+          <a class="explore-card reveal" href="/calendar.html"><span class="ex-icon">📊</span><h3>12-Month Chart</h3><p>All crops from January to December on one chart.</p><span class="ex-go">Open chart →</span></a>
+          <a class="explore-card reveal" href="/seasons.html"><span class="ex-icon">🌦️</span><h3>Crops by Season</h3><p>What to plant in the dry season, early rains, peak rains and late rains.</p><span class="ex-go">See seasons →</span></a>
+          <a class="explore-card reveal" href="/crops.html"><span class="ex-icon">🌽</span><h3>Facts on 84 Crops</h3><p>Best states, quick tips, diseases and how to prevent them.</p><span class="ex-go">Browse crops →</span></a>
+          <a class="explore-card reveal" href="/map.html"><span class="ex-icon">🗺️</span><h3>Farm Location Finder</h3><p>Find the best states for a crop, or what suits your own state.</p><span class="ex-go">Open map →</span></a>
+          <a class="explore-card reveal" href="/entries.html"><span class="ex-icon">📝</span><h3>My Crop Entries</h3><p>Add your own crops and see them on the calendar.</p><span class="ex-go">Add a crop →</span></a>
+          <a class="explore-card reveal" href="/tips.html"><span class="ex-icon">💡</span><h3>How to Plant Right</h3><p>Simple farming basics for beginners.</p><span class="ex-go">Read tips →</span></a>
         </div>
       </div>
     </section>
@@ -383,7 +412,7 @@
     <!-- Previous / Next page links -->
     <nav class="container pager" aria-label="Page navigation">
       <span></span>
-      <a class="pager-link next" href="calendar.html"><small>Next →</small>📊 Year Chart</a>
+      <a class="pager-link next" href="/calendar.html"><small>Next →</small>📊 Year Chart</a>
     </nav>
   </main>
 
@@ -394,19 +423,19 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <h3>🌾 Harvest Calendar Naija</h3>
-        <p>A digital guide to seasonal crops, helping Nigerian farmers, students and youth know when to plant and when to harvest.</p>
-        <p class="club">Built with ❤️ by<br><strong>YEWA EGBADO COLLEGE ILARO<br>BYTEBUSTERS CODING CLUB</strong><br>Ilaro, Ogun State, Nigeria</p>
+        <p>A digital guide to seasonal crops: when to plant, when to harvest, live rain checks and a Farm Doctor, in 17 Nigerian languages.</p>
+        <p class="club" data-i18n="footer.made">Built with love by the ByteBusters Coding Club, Yewa College, Ilaro.</p>
       </div>
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="index.html#calendar">This month</a></li>
-          <li><a href="calendar.html">12-month chart</a></li>
-          <li><a href="seasons.html">Crops by season</a></li>
-          <li><a href="crops.html">Crop facts</a></li>
-          <li><a href="map.html">Farm location finder</a></li>
-          <li><a href="entries.html">My crop entries</a></li>
-          <li><a href="tips.html">Farming tips</a></li>
+          <li><a href="/planting.html">Is it time to plant?</a></li>
+          <li><a href="/doctor.html">Farm Doctor</a></li>
+          <li><a href="/crops/">All 84 crop guides</a></li>
+          <li><a href="/states/">What to plant in your state</a></li>
+          <li><a href="/calendar.html">12-month chart</a></li>
+          <li><a href="/entries.html">My crop entries</a></li>
+          <li><a href="/tips.html">Farming tips</a></li>
         </ul>
       </div>
       <div>
@@ -416,12 +445,12 @@
           <li>NAERLS – Agricultural Extension, Zaria</li>
           <li>NRCRI Umudike · NCRI Badeggi · IAR Zaria</li>
           <li>NIHORT Ibadan · CRIN Ibadan · NIFOR Benin</li>
-          <li>FAO – Food and Agriculture Organization</li>
+          <li>FAO · Weather data: <a href="https://open-meteo.com/" rel="noopener">Open-Meteo.com</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year">2026</span> Harvest Calendar Naija · ByteBusters Coding Club. Educational use only. Always confirm planting dates with your local extension officer.</p>
+      <p>© <span id="year">2026</span> Harvest Calendar Naija · ByteBusters Coding Club, Yewa College, Ilaro · Odu'a Investment Foundation. Educational use only. Always confirm planting dates with your local ADP extension officer.</p>
     </div>
   </footer>
 
@@ -440,6 +469,11 @@
   <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
 
   <!-- ===== SHARED JAVASCRIPT (deferred so the page loads first) ===== -->
-  <script src="script.js" defer></script>
+  <script src="/js/config.js" defer></script>
+  <script src="/js/data.js" defer></script>
+  <script src="/js/i18n.js" defer></script>
+  <script src="/js/planting.js" defer></script>
+  <script src="/js/app.js" defer></script>
+  <script src="/js/features.js" defer></script>
 </body>
 </html>
