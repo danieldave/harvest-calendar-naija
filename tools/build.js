@@ -354,3 +354,25 @@ ${CROPS.map(c => `- [When to plant ${c.n.toLowerCase()} in Nigeria](${URL_}/crop
 ${STATES.map(s => `- [What to plant in ${s.n}](${URL_}/states/${s.id}/): ${ZONES[s.z].name}, rains ${s.rain}`).join('\n')}
 `);
 console.log(`Built ${pages.length} pages for ${URL_} (sitemap, robots.txt and llms.txt updated).`);
+
+
+/* ---------- SEARCH CONSOLE CODES: put "googleVerify" / "bingVerify" in tools/site.json ---------- */
+/* Added to every page that has a canonical link. Safe to run again and again. */
+(function () {
+  const site = JSON.parse(fs.readFileSync(path.join(__dirname, 'site.json'), 'utf8'));
+  const tags = (site.googleVerify ? '\n<meta name="google-site-verification" content="' + site.googleVerify + '">' : '') +
+    (site.bingVerify ? '\n<meta name="msvalidate.01" content="' + site.bingVerify + '">' : '');
+  const root = path.join(__dirname, '..');
+  (function walk(dir) {
+    fs.readdirSync(dir, { withFileTypes: true }).forEach(e => {
+      if (e.name.startsWith('.') || ['node_modules', 'tools', 'api'].includes(e.name)) return;
+      const f = path.join(dir, e.name);
+      if (e.isDirectory()) return walk(f);
+      if (!e.name.endsWith('.html')) return;
+      const h = fs.readFileSync(f, 'utf8');
+      if (!/<link rel="canonical"/.test(h)) return;
+      const next = h.replace(/\n<meta name="(google-site-verification|msvalidate\.01)"[^>]*>/g, '').replace(/(<link rel="canonical"[^>]*>)/, (m) => m + tags);
+      if (next !== h) fs.writeFileSync(f, next);
+    });
+  })(root);
+})();
