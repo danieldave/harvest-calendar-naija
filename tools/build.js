@@ -302,6 +302,126 @@ MAIN.forEach(f => {
 });
 pages.push({ loc: '/crops/', pri: '0.9' }, { loc: '/states/', pri: '0.9' });
 
+
+/* ---------- /weather.html : weather across Nigeria ---------- */
+write('weather.html', page({
+  rel: 'weather.html', title: 'Weather across Nigeria today: rain and temperature in every state | Harvest Calendar Naija',
+  description: 'Today\'s weather and the 7-day rain forecast for all 36 states and the FCT, made for farmers: where rain is coming this week and where it is dry.',
+  crumbs: [['Home', '/'], ['Weather', '/weather.html']], h1: 'Weather across Nigeria', sub: 'Rain and temperature for every state, for the next 7 days.',
+  answer: 'This page shows today\'s weather and the rain expected in the next 7 days at the capital of every Nigerian state. Use it with <a href="/planting.html">Plant Now</a> before you put seed in the ground.',
+  body: `
+        <div class="wx-tools"><label class="field"><span>Find a state</span><input id="wxFind" type="search" placeholder="Type a state, e.g. Ogun" autocomplete="off"></label>
+          <label class="field"><span>Show first</span><select id="wxSort"><option value="az">A to Z</option><option value="wet">Most rain this week</option><option value="dry">Least rain this week</option><option value="hot">Hottest today</option></select></label></div>
+        <p id="wxMine" class="note" hidden></p>
+        <div id="wxBoard" class="wx-board" aria-live="polite"><p>Loading the weather…</p></div>
+        <p class="note">Weather data: <a href="https://open-meteo.com/" rel="noopener">Open-Meteo.com</a>, measured at each state capital. Farms far from the capital can differ. A forecast is a guide, not a promise.</p>
+        <script>
+        (function () {
+          var board = document.getElementById("wxBoard"), find = document.getElementById("wxFind"), sort = document.getElementById("wxSort"), data = [], open = "";
+          var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+          var day = function (d) { return new Date(d + "T12:00:00").toLocaleDateString("en-GB", { weekday: "short" }); };
+          function draw() {
+            var q = find.value.trim().toLowerCase(), list = data.filter(function (s) { return !q || s.state.toLowerCase().indexOf(q) > -1; });
+            var by = { az: function (a, b) { return a.state.localeCompare(b.state); }, wet: function (a, b) { return b.weekRain - a.weekRain; }, dry: function (a, b) { return a.weekRain - b.weekRain; }, hot: function (a, b) { return b.days[0].max - a.days[0].max; } }[sort.value];
+            list.sort(by);
+            if (!list.length) { board.innerHTML = "<p>No state matches that name.</p>"; return; }
+            board.innerHTML = list.map(function (s) { var t = s.days[0];
+              return '<article class="wx-card' + (open === s.id ? " open" : "") + '" data-id="' + s.id + '"><button type="button" class="wx-top" aria-expanded="' + (open === s.id) + '">' +
+                '<span class="wx-ico" aria-hidden="true">' + t.icon + '</span><span class="wx-name"><b>' + esc(s.state) + '</b><small>' + esc(t.words) + ' · ' + esc(s.place) + '</small></span>' +
+                '<span class="wx-temp"><b>' + t.max + '°</b><small>' + t.min + '°</small></span><span class="wx-rain" title="Rain expected in 7 days"><b>' + s.weekRain + ' mm</b><small>7 days</small></span></button>' +
+                (open === s.id ? '<div class="wx-week">' + s.days.map(function (d) { return '<div><small>' + day(d.date) + '</small><span aria-hidden="true">' + d.icon + '</span><b>' + d.max + '°</b><small>' + d.rain + ' mm</small></div>'; }).join("") +
+                  '</div><p class="wx-links"><a href="/states/' + s.id + '/">What to plant in ' + esc(s.state) + ' →</a> <a href="/planting.html">Check a crop →</a></p>' : '') + '</article>'; }).join("");
+          }
+          board.onclick = function (e) { var c = e.target.closest(".wx-card"); if (!c || e.target.closest("a")) return; open = open === c.getAttribute("data-id") ? "" : c.getAttribute("data-id"); draw(); };
+          find.oninput = draw; sort.onchange = draw;
+          fetch("/api/nigeria-weather").then(function (r) { return r.json(); }).then(function (d) {
+            if (!d.states) { board.innerHTML = "<p>" + esc(d.error || "Weather is not available right now.") + "</p>"; return; }
+            data = d.states;
+            var mine = null; try { mine = localStorage.getItem("hc-state"); } catch (e) {}
+            var s = mine && data.filter(function (x) { return x.id === mine; })[0];
+            if (s) { var m = document.getElementById("wxMine"); m.hidden = false; m.innerHTML = "<b>Your state, " + esc(s.state) + ":</b> " + s.days[0].icon + " " + esc(s.days[0].words) + ", " + s.days[0].max + "° today, " + s.weekRain + " mm of rain expected in 7 days."; open = s.id; }
+            draw();
+          }).catch(function () { board.innerHTML = "<p>The weather could not load. Check your internet and try again.</p>"; });
+        })();
+        </script>`,
+  schema: [{ '@type': 'WebPage', name: 'Weather across Nigeria', about: 'Daily weather and 7-day rainfall forecast for Nigerian states', isAccessibleForFree: true }]
+}));
+pages.push({ loc: '/weather.html', pri: '0.9' });
+
+/* ---------- /account.html : My Farm (account + dashboard). Not in the sitemap: it is personal. ---------- */
+write('account.html', page({
+  rel: 'account.html', title: 'My Farm: your saved crops and farm year | Harvest Calendar Naija',
+  description: 'Make a quick My Farm account with a username and a 4-number PIN to keep the crops and states you look up, and print your own farm year.',
+  crumbs: [['Home', '/'], ['My Farm', '/account.html']], h1: 'My Farm', sub: 'Your crops, your state and your farm year, on any phone.',
+  body: `
+        <div id="mfOff" class="card mf-card" hidden><p>My Farm is not switched on yet. Please check back soon.</p></div>
+        <div id="mfDoor" class="mf-door" hidden>
+          <form id="mfForm" class="card mf-card" novalidate>
+            <div class="mf-tabs" role="tablist"><button type="button" role="tab" id="mfTabNew" aria-selected="true">Create account</button><button type="button" role="tab" id="mfTabIn" aria-selected="false">Sign in</button></div>
+            <label class="field"><span>Username</span><input id="mfUser" autocomplete="username" autocapitalize="none" maxlength="20" placeholder="e.g. cassava_king" required></label>
+            <p class="mf-hint">3 to 20 small letters, numbers or _. <b>Do not use your real name.</b></p>
+            <label class="field"><span>4-number PIN</span><input id="mfPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" placeholder="••••" required></label>
+            <p class="mf-warn" id="mfWarn">⚠️ <b>A forgotten PIN can't be recovered.</b> There is no email or phone number on your account, so nobody can reset it. Write your PIN somewhere safe.</p>
+            <button class="btn btn-primary" type="submit" id="mfGo">Create my account</button>
+            <p id="mfMsg" class="mf-msg" role="alert"></p>
+          </form>
+          <div class="card mf-card"><h2>Why make an account?</h2><ul><li>🌱 The crops and states you look up are kept for you.</li><li>🗓️ You get a <b>Farm Year</b>: one page showing when to plant and harvest your own crops. Print it for the wall.</li><li>🌦️ Your state's weather is shown first.</li><li>🔒 No email, no phone number, no real name.</li></ul></div>
+        </div>
+        <div id="mfHome" hidden>
+          <div class="card mf-card mf-hello"><div><h2 id="mfHello"></h2><p id="mfSince" class="mf-hint"></p></div>
+            <label class="field"><span>My state</span><select id="mfState"><option value="">Choose your state</option>${STATES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(s => `<option value="${s.id}">${esc(s.n)}</option>`).join('')}</select></label></div>
+          <p id="mfWx" class="note" hidden></p>
+          <h2>🗓️ My Farm Year</h2>
+          <div id="mfYear"></div>
+          <p><button class="btn btn-ghost" type="button" id="mfPrint">🖨️ Print my Farm Year</button></p>
+          <h2>🕘 What I looked up</h2>
+          <div id="mfHist"></div>
+          <p class="mf-actions"><button class="btn btn-ghost" type="button" id="mfClear">Clear my history</button> <button class="btn btn-ghost" type="button" id="mfOut">Sign out</button> <button class="btn btn-ghost" type="button" id="mfDel">Delete my account</button></p>
+          <p id="mfMsg2" class="mf-msg" role="alert"></p>
+        </div>
+        <script>
+        (function () {
+          var CROPS = ${json(CROPS.map(c => ({ id: c.id, n: c.n, e: c.e, p: c.p, h: c.h })))}, STATES = ${json(STATES.map(s => ({ id: s.id, n: s.n })))}, MON = ${json(SHORT)};
+          var $ = function (id) { return document.getElementById(id); }, mode = "register";
+          var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+          var put = function (k, v) { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
+          var call = function (b) { return fetch("/api/account", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(b) }).then(function (r) { return r.json(); }); };
+          var token = null; try { token = localStorage.getItem("hc-token"); } catch (e) {}
+          function tab(m) { mode = m; $("mfTabNew").setAttribute("aria-selected", m === "register"); $("mfTabIn").setAttribute("aria-selected", m === "login"); $("mfGo").textContent = m === "register" ? "Create my account" : "Sign in"; $("mfWarn").hidden = m !== "register"; $("mfMsg").textContent = ""; }
+          $("mfTabNew").onclick = function () { tab("register"); }; $("mfTabIn").onclick = function () { tab("login"); };
+          function door() { $("mfHome").hidden = true; $("mfDoor").hidden = false; }
+          function home(d) {
+            $("mfDoor").hidden = true; $("mfHome").hidden = false;
+            $("mfHello").textContent = "Welcome, " + d.username + " 👋"; $("mfSince").textContent = d.since ? "Farming with us since " + d.since + "." : "";
+            $("mfState").value = d.state || ""; put("hc-state", d.state || null); put("hc-user", d.username);
+            var seen = {}, crops = []; d.history.forEach(function (h) { if (h.c && !seen[h.c]) { seen[h.c] = 1; var c = CROPS.filter(function (x) { return x.id === h.c; })[0]; if (c) crops.push(c); } });
+            $("mfYear").innerHTML = crops.length ? '<div class="mf-scroll"><table class="mf-year"><thead><tr><th>Crop</th>' + MON.map(function (m) { return "<th>" + m + "</th>"; }).join("") + '</tr></thead><tbody>' +
+              crops.slice(0, 12).map(function (c) { return '<tr><th><a href="/crops/' + c.id + '/">' + c.e + " " + esc(c.n) + '</a></th>' + MON.map(function (m, i) { var p = c.p.indexOf(i + 1) > -1, h = c.h.indexOf(i + 1) > -1; return '<td class="' + (p && h ? "b" : p ? "p" : h ? "h" : "") + '">' + (p && h ? "P·H" : p ? "P" : h ? "H" : "") + "</td>"; }).join("") + "</tr>"; }).join("") +
+              '</tbody></table></div><p class="mf-hint"><b>P</b> = plant, <b>H</b> = harvest. Months are a general guide for Nigeria: open a crop to see your own zone.</p>'
+              : '<p class="mf-hint">Open any crop page or check a crop on <a href="/planting.html">Plant Now</a>, and it will appear here as your own farm calendar.</p>';
+            $("mfHist").innerHTML = d.history.length ? '<ul class="mf-list">' + d.history.map(function (h) { var c = CROPS.filter(function (x) { return x.id === h.c; })[0], s = STATES.filter(function (x) { return x.id === h.s; })[0];
+              return "<li>" + (c ? '<a href="/crops/' + c.id + '/">' + c.e + " " + esc(c.n) + "</a>" : "") + (c && s ? " in " : "") + (s ? '<a href="/states/' + s.id + '/">' + esc(s.n) + "</a>" : "") + " <small>" + esc(h.t) + "</small></li>"; }).join("") + "</ul>"
+              : '<p class="mf-hint">Nothing yet. Your look-ups will be listed here.</p>';
+            $("mfWx").hidden = !d.state; if (d.state) $("mfWx").innerHTML = "🌦️ <a href=/weather.html>See the weather for your state this week →</a>";
+          }
+          $("mfForm").addEventListener("submit", function (e) { e.preventDefault(); $("mfMsg").textContent = "Please wait…";
+            call({ action: mode, username: $("mfUser").value, pin: $("mfPin").value }).then(function (d) {
+              if (d.live === false) { $("mfDoor").hidden = true; $("mfOff").hidden = false; return; }
+              if (!d.token) { $("mfMsg").textContent = d.error || "Please try again."; return; }
+              token = d.token; put("hc-token", token); $("mfPin").value = ""; home(d);
+            }).catch(function () { $("mfMsg").textContent = "Could not reach the server. Check your internet."; }); });
+          $("mfState").onchange = function () { call({ action: "setState", token: token, state: this.value }); put("hc-state", this.value || null); };
+          $("mfPrint").onclick = function () { window.print(); };
+          $("mfClear").onclick = function () { if (confirm("Clear everything you looked up?")) call({ action: "clear", token: token }).then(function () { return call({ action: "me", token: token }); }).then(home); };
+          $("mfOut").onclick = function () { call({ action: "logout", token: token }); put("hc-token", null); put("hc-user", null); token = null; door(); };
+          $("mfDel").onclick = function () { var pin = prompt("Type your 4-number PIN to delete your account for ever:"); if (!pin) return;
+            call({ action: "delete", token: token, pin: pin }).then(function (d) { if (d.deleted) { put("hc-token", null); put("hc-user", null); put("hc-state", null); token = null; door(); $("mfMsg").textContent = "Your account was deleted."; } else $("mfMsg2").textContent = d.error || "Could not delete."; }); };
+          if (token) call({ action: "me", token: token }).then(function (d) { if (d.live === false) { $("mfOff").hidden = false; return; } if (d.username) home(d); else { put("hc-token", null); door(); } }).catch(door);
+          else call({ action: "ping" }).then(function (d) { if (d.live === false) $("mfOff").hidden = false; else door(); }).catch(door);
+        })();
+        </script>`
+}).replace('<meta name="robots" content="index, follow', '<meta name="robots" content="noindex, follow'));
+
 /* ---------- sitemap.xml, robots.txt, llms.txt ---------- */
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

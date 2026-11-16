@@ -809,3 +809,34 @@ html, body { overflow-x: hidden; }
   .nav-toggle { padding: 8px 4px; }
 }
 .rain-chart svg { height: clamp(110px, 18vw, 170px); }
+
+/* ---------- weather across Nigeria ---------- */
+.wx-tools { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin: 14px 0; }
+.wx-tools input, .wx-tools select, .mf-card input, .mf-card select, #mfState { width: 100%; font: inherit; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--green-100); background: var(--card, #fff); color: inherit; }
+.wx-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+.wx-card { background: var(--card, #fff); border: 1.5px solid var(--green-100); border-radius: 18px; overflow: hidden; }
+.wx-card.open { grid-column: 1 / -1; border-color: var(--green-500); }
+.wx-top { width: 100%; display: grid; grid-template-columns: auto 1fr auto auto; gap: 12px; align-items: center; padding: 14px 16px; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.wx-ico { font-size: 34px; } .wx-top b { display: block; font-size: 17px; } .wx-top small { opacity: .75; font-size: 13px; }
+.wx-temp, .wx-rain { text-align: right; } .wx-rain b { color: #1c6fd1; }
+.wx-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: 4px 14px 12px; text-align: center; }
+.wx-week div { background: var(--green-100); border-radius: 12px; padding: 8px 2px; display: grid; gap: 2px; } .wx-week span { font-size: 22px; }
+.wx-links { padding: 0 16px 14px; margin: 0; display: flex; flex-wrap: wrap; gap: 14px; font-weight: 600; }
+/* ---------- My Farm ---------- */
+.mf-door { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.mf-card { padding: 20px; border-radius: 18px; background: var(--card, #fff); border: 1.5px solid var(--green-100); margin-bottom: 14px; }
+.mf-card .field { display: grid; gap: 4px; font-weight: 600; margin: 10px 0 4px; }
+.mf-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--green-100); padding: 5px; border-radius: 999px; }
+.mf-tabs button { border: 0; background: none; font: inherit; font-weight: 700; padding: 9px; border-radius: 999px; cursor: pointer; color: inherit; }
+.mf-tabs button[aria-selected="true"] { background: var(--green-700); color: #fff; }
+.mf-hint { font-size: 14px; opacity: .8; margin: 4px 0; } .mf-msg { color: #b3261e; font-weight: 600; min-height: 22px; }
+.mf-warn { background: #fff3c4; color: #4a3500; border-radius: 12px; padding: 10px 14px; font-size: 14.5px; margin: 10px 0; }
+.mf-hello { display: grid; grid-template-columns: 1fr minmax(180px, 260px); gap: 14px; align-items: center; }
+.mf-scroll { overflow-x: auto; } .mf-year { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14px; }
+.mf-year th, .mf-year td { border: 1px solid var(--green-100); padding: 7px 4px; text-align: center; } .mf-year tbody th { text-align: left; white-space: nowrap; padding-left: 8px; }
+.mf-year td.p { background: #cdeed8; color: #0c4a30; font-weight: 700; } .mf-year td.h { background: #ffe5a3; color: #4a3500; font-weight: 700; } .mf-year td.b { background: linear-gradient(135deg, #cdeed8 50%, #ffe5a3 50%); color: #20300c; font-weight: 700; font-size: 12px; }
+.mf-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; } .mf-list li { background: var(--green-100); border-radius: 12px; padding: 9px 12px; } .mf-list small { opacity: .7; float: right; }
+.mf-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+@media (max-width: 720px) { .mf-door, .mf-hello, .wx-tools { grid-template-columns: 1fr; } .wx-week { grid-template-columns: repeat(4, 1fr); } }
+@media print { body[data-page="guide"] .site-header, .site-footer, .mf-actions, #mfPrint, #mfHist, .mf-hello, .breadcrumb, .to-top, .updated, #mfWx, h2 + #mfHist { display: none !important; } .mf-year { min-width: 0; } }
+.mf-door[hidden], #mfHome[hidden], .mf-card[hidden], .mf-warn[hidden] { display: none !important; }

@@ -55,3 +55,13 @@ tools/build.js    makes crops/, states/, sitemap.xml, robots.txt, llms.txt
 ```
 
 Educational use only. Always confirm planting dates with your local ADP extension officer. Weather data: Open-Meteo.com (CC BY 4.0).
+
+## Weather across Nigeria (`/weather.html` + `api/nigeria-weather.js`)
+Today's weather and the 7-day rain total for every state capital, from Open-Meteo.com (free, no key). Search a state, sort by wettest, driest or hottest, and tap a state for its week. The answer is kept for 3 hours.
+
+## My Farm accounts (`/account.html` + `api/account.js` + `js/myfarm.js`)
+- A quick account: **username + 4-number PIN**. No email, no phone, no real name. The sign-up form warns: *a forgotten PIN can't be recovered*.
+- When signed in, the site remembers the crop pages, state pages and Plant Now checks you open (newest 50).
+- The dashboard shows your look-ups and **My Farm Year**: a printable chart of when to plant and harvest your own crops.
+- Safety: the PIN is stored only in scrambled form (scrypt); 5 wrong PINs lock a username for 15 minutes; sign-in lasts 30 days; an account can be deleted with its PIN.
+- Needs the Upstash database (`KV_REST_API_URL`, `KV_REST_API_TOKEN`). Optional extra secret: `ACCOUNT_SECRET` (set it once and never change it, or existing PINs stop working).

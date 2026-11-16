@@ -171,9 +171,9 @@ function call(handler, { method = 'POST', body = {}, query = {}, origin = 'https
       assert.ok(h.includes('class="answer-box"'), f); assert.ok(h.includes('"FAQPage"'), f);
     });
   });
-  await ok('sitemap lists 132 pages; robots.txt and llms.txt agree (GEO)', () => {
+  await ok('sitemap lists 133 pages; robots.txt and llms.txt agree (GEO)', () => {
     const sm = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
-    assert.strictEqual((sm.match(/<url>/g) || []).length, 9 + 2 + CROPS.length + STATES.length);
+    assert.strictEqual((sm.match(/<url>/g) || []).length, 9 + 2 + 1 + CROPS.length + STATES.length);   // +1 = the weather page
     assert.ok(fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8').includes('GPTBot'));
     assert.ok(fs.readFileSync(path.join(ROOT, 'llms.txt'), 'utf8').startsWith('# Harvest Calendar Naija'));
   });
@@ -182,5 +182,68 @@ function call(handler, { method = 'POST', body = {}, query = {}, origin = 'https
       assert.ok(!/sk-[A-Za-z0-9_-]{20,}/.test(fs.readFileSync(path.join(ROOT, f), 'utf8')), f));
   });
 
+  console.log('\nMy Farm accounts (api/account.js) and Nigeria weather (api/nigeria-weather.js)');
+  {
+    const acct = require('../api/account'), wx = require('../api/nigeria-weather');
+    const real = global.fetch; const K = {}, H = {}, L = {};
+    global.fetch = async (u, o) => {
+      if (String(u).includes('open-meteo')) { const n = String(u).split('latitude=')[1].split('&')[0].split(',').length;
+        const one = { daily: { time: ['2026-11-16', '2026-11-17'], weather_code: [61, 0], temperature_2m_max: [31.4, 33], temperature_2m_min: [23, 24], precipitation_sum: [12.34, 0], precipitation_probability_max: [80, 5] } };
+        return { ok: true, json: async () => Array.from({ length: n }, () => one) }; }
+      const cmds = JSON.parse(o.body);
+      return { ok: true, json: async () => cmds.map(c => {
+        if (c[0] === 'HSETNX') { if (H[c[1]]) return { result: 0 }; H[c[1]] = { [c[2]]: c[3] }; return { result: 1 }; }
+        if (c[0] === 'HSET') { H[c[1]] = H[c[1]] || {}; for (let i = 2; i < c.length; i += 2) H[c[1]][c[i]] = c[i + 1]; return { result: 1 }; }
+        if (c[0] === 'HGETALL') return { result: [].concat(...Object.entries(H[c[1]] || {})) };
+        if (c[0] === 'SET') { K[c[1]] = c[2]; return { result: 'OK' }; }
+        if (c[0] === 'GET') return { result: K[c[1]] === undefined ? null : K[c[1]] };
+        if (c[0] === 'INCR') { K[c[1]] = String(Number(K[c[1]] || 0) + 1); return { result: Number(K[c[1]]) }; }
+        if (c[0] === 'DEL') { c.slice(1).forEach(k => { delete K[k]; delete H[k]; delete L[k]; }); return { result: 1 }; }
+        if (c[0] === 'LPUSH') { (L[c[1]] = L[c[1]] || []).unshift(c[2]); return { result: 1 }; }
+        if (c[0] === 'LINDEX') return { result: (L[c[1]] || [])[0] || null };
+        if (c[0] === 'LRANGE') return { result: L[c[1]] || [] };
+        return { result: 1 }; }) };
+    };
+    delete process.env.KV_REST_API_URL; delete process.env.UPSTASH_REDIS_REST_URL;
+    await ok('without the database, accounts say "not switched on"', async () => assert.strictEqual((await call(acct, { body: { action: 'register', username: 'farmer_one', pin: '4821' } })).data.live, false));
+    process.env.KV_REST_API_URL = 'https://db.example'; process.env.KV_REST_API_TOKEN = 't';
+    let token;
+    await ok('an account needs a good username and a 4-number PIN that is not too easy', async () => {
+      assert.strictEqual((await call(acct, { body: { action: 'register', username: 'Ab', pin: '4821' }, ip: '6.0.0.1' })).code, 400);
+      assert.strictEqual((await call(acct, { body: { action: 'register', username: 'farmer_one', pin: '12a4' }, ip: '6.0.0.1' })).code, 400);
+      assert.strictEqual((await call(acct, { body: { action: 'register', username: 'farmer_one', pin: '1234' }, ip: '6.0.0.1' })).code, 400);
+      const r = await call(acct, { body: { action: 'register', username: 'Farmer_One', pin: '4821' }, ip: '6.0.0.1' });
+      assert.strictEqual(r.data.username, 'farmer_one'); token = r.data.token; assert.ok(token.length >= 60);
+      assert.strictEqual((await call(acct, { body: { action: 'register', username: 'farmer_one', pin: '9999' }, ip: '6.0.0.1' })).code, 409);
+      assert.ok(!JSON.stringify([K, H]).includes('4821'), 'the PIN itself is never stored'); assert.ok(!JSON.stringify(K).includes(token), 'the token itself is never stored');
+    });
+    await ok('look-ups are saved from our own lists only, and not twice in a row', async () => {
+      assert.strictEqual((await call(acct, { body: { action: 'save', token, crop: 'maize', state: 'ogun' } })).data.saved, true);
+      assert.strictEqual((await call(acct, { body: { action: 'save', token, crop: 'maize', state: 'ogun' } })).data.same, true);
+      assert.strictEqual((await call(acct, { body: { action: 'save', token, crop: 'my secret words', state: 'nowhere' } })).code, 400);
+      assert.strictEqual((await call(acct, { body: { action: 'save', token: 'x'.repeat(64), crop: 'maize' } })).code, 401);
+      const me = (await call(acct, { body: { action: 'me', token } })).data; assert.deepStrictEqual(me.history.map(h => h.c + '/' + h.s), ['maize/ogun']);
+    });
+    await ok('5 wrong PINs lock the username, even for the right PIN', async () => {
+      for (let i = 0; i < 5; i++) assert.strictEqual((await call(acct, { body: { action: 'login', username: 'farmer_one', pin: '000' + i }, ip: '6.0.0.2' })).code, 401);
+      assert.strictEqual((await call(acct, { body: { action: 'login', username: 'farmer_one', pin: '4821' }, ip: '6.0.0.2' })).code, 429);
+      delete K['hc:fail:farmer_one'];
+      assert.ok((await call(acct, { body: { action: 'login', username: 'farmer_one', pin: '4821' }, ip: '6.0.0.2' })).data.token);
+    });
+    await ok('deleting an account needs the PIN and removes everything', async () => {
+      assert.strictEqual((await call(acct, { body: { action: 'delete', token, pin: '0000' } })).code, 401);
+      assert.strictEqual((await call(acct, { body: { action: 'delete', token, pin: '4821' } })).data.deleted, true);
+      assert.ok(!H['hc:u:farmer_one'] && !L['hc:h:farmer_one']);
+    });
+    await ok('Nigeria weather: one tidy row for every state, with a 7-day rain total', async () => {
+      const r = await call(wx, { method: 'GET' }); assert.strictEqual(r.data.states.length, 37);
+      const s = r.data.states.find(x => x.id === 'ogun'); assert.strictEqual(s.days[0].icon, '🌧️'); assert.strictEqual(s.days[0].max, 31); assert.strictEqual(s.weekRain, 12);
+    });
+    await ok('the weather page is in the sitemap; the personal My Farm page is not', async () => {
+      const sm = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8'); assert.ok(sm.includes('/weather.html') && !sm.includes('/account.html'));
+      const a = fs.readFileSync(path.join(ROOT, 'account.html'), 'utf8'); assert.ok(a.includes("A forgotten PIN can't be recovered") && a.includes('noindex'));
+    });
+    global.fetch = real;
+  }
   console.log(`\nAll ${passed} checks passed.`);
 })().catch(e => { console.error('\n  ✗ FAILED:', e.message); process.exit(1); });
