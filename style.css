@@ -812,9 +812,9 @@ html, body { overflow-x: hidden; }
 
 /* ---------- weather across Nigeria ---------- */
 .wx-tools { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin: 14px 0; }
-.wx-tools input, .wx-tools select, .mf-card input, .mf-card select, #mfState { width: 100%; font: inherit; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--green-100); background: var(--card, #fff); color: inherit; }
+.wx-tools input, .wx-tools select, .mf-card input, .mf-card select, #mfState { width: 100%; font: inherit; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--green-100); background: var(--white); color: inherit; }
 .wx-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
-.wx-card { background: var(--card, #fff); border: 1.5px solid var(--green-100); border-radius: 18px; overflow: hidden; }
+.wx-card { background: var(--white); border: 1.5px solid var(--green-100); border-radius: 18px; overflow: hidden; }
 .wx-card.open { grid-column: 1 / -1; border-color: var(--green-500); }
 .wx-top { width: 100%; display: grid; grid-template-columns: auto 1fr auto auto; gap: 12px; align-items: center; padding: 14px 16px; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .wx-ico { font-size: 34px; } .wx-top b { display: block; font-size: 17px; } .wx-top small { opacity: .75; font-size: 13px; }
@@ -824,7 +824,7 @@ html, body { overflow-x: hidden; }
 .wx-links { padding: 0 16px 14px; margin: 0; display: flex; flex-wrap: wrap; gap: 14px; font-weight: 600; }
 /* ---------- My Farm ---------- */
 .mf-door { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-.mf-card { padding: 20px; border-radius: 18px; background: var(--card, #fff); border: 1.5px solid var(--green-100); margin-bottom: 14px; }
+.mf-card { padding: 20px; border-radius: 18px; background: var(--white); border: 1.5px solid var(--green-100); margin-bottom: 14px; }
 .mf-card .field { display: grid; gap: 4px; font-weight: 600; margin: 10px 0 4px; }
 .mf-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--green-100); padding: 5px; border-radius: 999px; }
 .mf-tabs button { border: 0; background: none; font: inherit; font-weight: 700; padding: 9px; border-radius: 999px; cursor: pointer; color: inherit; }
@@ -840,3 +840,10 @@ html, body { overflow-x: hidden; }
 @media (max-width: 720px) { .mf-door, .mf-hello, .wx-tools { grid-template-columns: 1fr; } .wx-week { grid-template-columns: repeat(4, 1fr); } }
 @media print { body[data-page="guide"] .site-header, .site-footer, .mf-actions, #mfPrint, #mfHist, .mf-hello, .breadcrumb, .to-top, .updated, #mfWx, h2 + #mfHist { display: none !important; } .mf-year { min-width: 0; } }
 .mf-door[hidden], #mfHome[hidden], .mf-card[hidden], .mf-warn[hidden] { display: none !important; }
+/* night mode for the weather and My Farm pages */
+.wx-tools input, .wx-tools select, .mf-card input, .mf-card select, #mfState, .wx-top, .mf-tabs button { color: var(--ink); }
+.wx-card, .mf-card { border-color: var(--line); color: var(--ink); }
+:root[data-theme="dark"] .wx-rain b { color: #8ec5ff; }
+:root[data-theme="dark"] .mf-msg { color: #ff9a8f; }
+:root[data-theme="dark"] .mf-tabs button[aria-selected="true"] { color: #fff; }
+:root[data-theme="dark"] .mf-year th, :root[data-theme="dark"] .mf-year td { border-color: var(--line); }
